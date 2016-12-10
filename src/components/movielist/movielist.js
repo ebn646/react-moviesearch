@@ -1,22 +1,30 @@
-import React from 'react'
-import {browserHistory,Link} from 'react-router'
-
+import React from 'react';
+import { browserHistory, Router, Route, Link } from 'react-router'
 import Navigation from '../navigation/navigation.js'
 
-require('./home.scss');
-
 const axios = require('axios')
+const ACTIVE = { color: 'red' }
 
-class Home extends React.Component{
-    constructor({ params: { category }, location: { query } }){
-        console.log('home')
-        super();
-        this.state = { movies:[] };
-
+class Category extends React.Component{
+    constructor(props){
+        super(props)
     }
 
     componentWillMount(){
-        var url = "https://api.themoviedb.org/3/movie/now_playing?api_key=1cec0394fa447a1f03d7a744faf9cbc9&language=en-US";
+        this.state = { movies:[] };
+        this.getMovies();
+    }
+
+    componentWillReceiveProps(nextProps) {
+        var sameQuery = this.props.params.category === nextProps.params.category;
+        if(sameQuery)this.getMovies();
+    }
+
+    getMovies(){
+        var val = this.props.params.category;
+        var apiKey = '1cec0394fa447a1f03d7a744faf9cbc9';
+        var url = 'https://api.themoviedb.org/3/movie/' + val + '?api_key=' + apiKey+'&language=en-US';
+        
         axios.get(url)
         .then((response)=>{
             this.setState({
@@ -26,14 +34,6 @@ class Home extends React.Component{
         .catch(function(error){
             console.log(error);
         })
-    }
-
-    componentDidMount(){
-       
-    }
-
-    handleClick(e){
-     
     }
 
     render() {
@@ -53,4 +53,4 @@ class Home extends React.Component{
     }
 }
 
-export {Home as default}
+export {Category as default}

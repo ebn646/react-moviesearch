@@ -6,7 +6,8 @@ var axios = require('axios');
 class Movie extends React.Component{
     constructor(props){
         super(props);
-        this.state = { 
+        console.log('constructor')
+         this.state = { 
             movieInfo: new Object(),
             videoId: '',
             player: null,
@@ -18,14 +19,14 @@ class Movie extends React.Component{
         this.onPauseVideo = this.onPauseVideo.bind(this);
     }
 
-    componentDidMount(){
+    componentWillMount(){
+        console.log('componentWillMount')
         var val = this.props.params.id;
         var apiKey = '1cec0394fa447a1f03d7a744faf9cbc9';
         var url = 'https://api.themoviedb.org/3/movie/' + val + '?api_key=' + apiKey+'&append_to_response=similar,videos,credits';
 
         axios.get(url)
         .then((response)=>{
-            console.log(response.data.videos.results[0])
             this.setState({
                 movieInfo:response.data,
                 videoId: response.data.videos.results[0].key,
@@ -51,16 +52,21 @@ class Movie extends React.Component{
         this.state.player.pauseVideo();
     }
 
+    onGoBack(){
+        window.history.back();
+    }
+
     onChangeVideo() {
         this.setState({
         videoId: this.state.videoId === videoIdA ? videoIdB : videoIdA,
         });
     }
     render(){
+        console.log('render')
         return(
             <div>
                 <div className="panel panel-default "> 
-                <div className="panel-heading header"><Link to={'/'}>HOME</Link></div> 
+                <div className="panel-heading header"onClick={this.onGoBack.bind(this)}><button>BACK</button></div> 
                     <div className="jumbotron">
                         <div className="container">
                             <img src={`https://image.tmdb.org/t/p/original${this.state.movieInfo.backdrop_path}`} width='100%' height='100%'/>
