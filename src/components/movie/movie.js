@@ -80,12 +80,19 @@ class Movie extends React.Component{
                                 <img src={`https://image.tmdb.org/t/p/original${this.state.movieInfo.backdrop_path}`} width='100%' height='100%'/>
                                 <div className="page-header">
                                     <h3>{this.state.movieInfo.original_title}</h3>
+                                    <div className="movierelease">
+                                        <span className="title">In Theatres</span>
+                                        <span>{this.state.movieInfo.release_date}</span>
+                                    </div>
                                     <small>{this.state.movieInfo.overview}</small>
                                 </div>
                                 <div className="bs-example" data-example-id="responsive-embed-16by9-iframe-youtube"> 
                                     <div className="embed-responsive embed-responsive-16by9"> 
                                         <YouTube videoId={this.state.videoId} onReady={this.onReady} />
                                     </div> 
+                                </div>
+                                <div className="movieinfo">
+                                    <h3>Information</h3>
                                 </div>
                             </div>
                         </div>

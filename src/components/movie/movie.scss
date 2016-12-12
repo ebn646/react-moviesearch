@@ -1,3 +1,24 @@
 .jumbotron{
-    margin-bottom:0
+    margin-bottom:0;
+    padding-left:0 !important;
+}
+.movierelease{
+     padding-bottom:10px;
+     span{
+        display:inline-block;
+
+        &.title{
+            margin-right:15px;
+        }
+    }
+}
+.movieinfo{
+    padding-bottom:50px;
+    span{
+        display:inline-block;
+
+        &.title{
+            margin-right:15px;
+        }
+    }
 }

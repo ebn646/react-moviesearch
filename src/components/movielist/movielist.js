@@ -22,7 +22,7 @@ class MovieList extends React.Component{
     }
 
     getMovies(){
-        var val = this.props.params.category || 'now_playing';
+        var val = this.props.params.category;
         var apiKey = '1cec0394fa447a1f03d7a744faf9cbc9';
         var url = 'https://api.themoviedb.org/3/movie/' + val + '?api_key=' + apiKey+'&language=en-US';
         

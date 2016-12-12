@@ -10,6 +10,7 @@ class Navigation extends React.Component{
                     <div className="btn-group" role="group" aria-label="Basic example"> 
                         <button type="button" className="btn btn-default"><Link to={`/category/now_playing`}activeStyle={ACTIVE}>Now Playing</Link></button> 
                         <button type="button" className="btn btn-default"><Link to={`/category/popular`}activeStyle={ACTIVE}>Popular</Link></button> 
+                        <button type="button" className="btn btn-default"><Link to={`/category/upcoming`}activeStyle={ACTIVE}>Coming Soon</Link></button> 
                     </div> 
             </div>
         )
